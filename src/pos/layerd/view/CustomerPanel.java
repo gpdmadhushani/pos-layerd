@@ -4,16 +4,21 @@
  */
 package pos.layerd.view;
 
+import javax.swing.JOptionPane;
+import pos.layerd.controller.CustomerController;
+import pos.layerd.dto.CustomerDto;
+
 /**
  *
  * @author TOSHIBA
  */
 public class CustomerPanel extends javax.swing.JPanel {
+    
 
-    /**
-     * Creates new form CustomerPanel
-     */
+   private CustomerController customerController;
     public CustomerPanel() {
+        customerController =new CustomerController ();
+        
         initComponents();
     }
 
@@ -344,19 +349,19 @@ public class CustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_custProvincetextActionPerformed
 
     private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
-        
+
     }//GEN-LAST:event_customerTableMouseClicked
 
     private void deleteCustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustButtonActionPerformed
-        
+
     }//GEN-LAST:event_deleteCustButtonActionPerformed
 
     private void updateCustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCustButtonActionPerformed
-        
+
     }//GEN-LAST:event_updateCustButtonActionPerformed
 
     private void addCustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustButtonActionPerformed
-        
+        addCustomer();
     }//GEN-LAST:event_addCustButtonActionPerformed
 
     private void custTitletextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custTitletextActionPerformed
@@ -402,4 +407,41 @@ public class CustomerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel tablepanel;
     private javax.swing.JButton updateCustButton;
     // End of variables declaration//GEN-END:variables
+
+    private void addCustomer() {
+
+        CustomerDto customerDto = new CustomerDto(custIdtext.getText(), custTitletext.getText(), custNametext.getText(), custDOBtext.getText(), Double.parseDouble(custSalarytext.getText()), custAddresstext.getText(), custCitytext.getText(), custProvincetext.getText(), custPostaltext.getText());
+    
+    String result=customerController.addCustomer(customerDto);
+    JOptionPane.showMessageDialog(this, result);
+    clear();
+    
+   
+   }
+
+private void clear(){
+    custIdtext.setText("");
+    custTitletext.setText("");
+    custNametext.setText("");
+    custDOBtext.setText("");
+    custSalarytext.setText("");
+    custAddresstext.setText("");
+    custCitytext.setText("");
+    custProvincetext.setText("");
+    custPostaltext.setText("");
+    
+    
 }
+
+
+
+
+
+
+
+
+
+}
+
+
+
