@@ -160,6 +160,11 @@ public class CustomerEntity {
         this.zip = zip;
     }
 
+    @Override
+    public String toString() {
+        return "CustomerEntity{" + "id=" + id + ", title=" + title + ", name=" + name + ", dob=" + dob + ", salary=" + salary + ", address=" + address + ", city=" + city + ", province=" + province + ", zip=" + zip + '}';
+    }
+
      
     
        

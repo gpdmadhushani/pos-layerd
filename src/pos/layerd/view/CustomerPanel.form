@@ -23,9 +23,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="headerpanel" pref="758" max="32767" attributes="0"/>
+              <Component id="headerpanel" pref="733" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="basepanel" pref="48" max="32767" attributes="0"/>
+              <Component id="basepanel" pref="14" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -90,7 +90,7 @@
                       </Group>
                       <Component id="homepanel" alignment="0" min="-2" pref="733" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -226,11 +226,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="customerProvinceLabel" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="custProvincetext" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="customerCityLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="custCitytext" alignment="1" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="customerProvinceLabel" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="custProvincetext" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="customerCityLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="custPostaltext" min="-2" max="-2" attributes="0"/>
