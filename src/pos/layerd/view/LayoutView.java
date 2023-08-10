@@ -4,6 +4,7 @@
  */
 package pos.layerd.view;
 
+
 /**
  *
  * @author TOSHIBA
@@ -122,7 +123,8 @@ public class LayoutView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageCustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustButtonActionPerformed
-        loadCustomerPanel();
+       loadCustomerPanel();
+ 
     }//GEN-LAST:event_manageCustButtonActionPerformed
 
     /**
