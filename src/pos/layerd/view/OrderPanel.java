@@ -12,9 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pos.layerd.controller.CustomerController;
 import pos.layerd.controller.ItemController;
+import pos.layerd.controller.OrderController;
 import pos.layerd.dto.CustomerDto;
 import pos.layerd.dto.ItemDto;
 import pos.layerd.dto.OrderDetailDto;
+import pos.layerd.dto.OrderDto;
 
 /**
  *
@@ -24,11 +26,13 @@ public class OrderPanel extends javax.swing.JPanel {
  private CustomerController customerController;
     
      private ItemController itemController;
+     private OrderController orderController;
      
      ArrayList<OrderDetailDto> orderDetailDto=new ArrayList<>();
     public OrderPanel() {
         customerController=new CustomerController();
         itemController=new ItemController();
+        orderController=new OrderController();
         
         initComponents();
         
@@ -69,6 +73,8 @@ public class OrderPanel extends javax.swing.JPanel {
         placeOrdereButton = new javax.swing.JButton();
         itemDetailsLabel = new javax.swing.JLabel();
         itemlabel2 = new javax.swing.JLabel();
+        itemdetailLabel3 = new javax.swing.JLabel();
+        iemqohlabel = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
         custdetails = new javax.swing.JLabel();
         headerlabel = new javax.swing.JLabel();
@@ -140,6 +146,10 @@ public class OrderPanel extends javax.swing.JPanel {
             }
         });
 
+        itemdetailLabel3.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        iemqohlabel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
         javax.swing.GroupLayout tablepanelLayout = new javax.swing.GroupLayout(tablepanel);
         tablepanel.setLayout(tablepanelLayout);
         tablepanelLayout.setHorizontalGroup(
@@ -147,33 +157,37 @@ public class OrderPanel extends javax.swing.JPanel {
             .addGroup(tablepanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tablepanelLayout.createSequentialGroup()
+                            .addComponent(discountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(discounttext, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(addItemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(tablepanelLayout.createSequentialGroup()
+                            .addComponent(itemIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(itemIdtext1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(searchitemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(tablepanelLayout.createSequentialGroup()
                         .addComponent(quentityIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(quentitytext, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(quentitytext, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(itemdetailsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tablepanelLayout.createSequentialGroup()
-                        .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tablepanelLayout.createSequentialGroup()
-                                .addComponent(discountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(discounttext, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(addItemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(tablepanelLayout.createSequentialGroup()
-                                .addComponent(itemIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(itemIdtext1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchitemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(itemdetailsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(tablepanelLayout.createSequentialGroup()
-                                .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(itemDetailsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(itemlabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                            .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(itemDetailsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(itemlabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                            .addComponent(itemdetailLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(tablepanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(iemqohlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(tablepanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -203,11 +217,17 @@ public class OrderPanel extends javax.swing.JPanel {
                     .addComponent(itemdetailsLabel)
                     .addComponent(itemIdtext1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(itemDetailsLabel)
-                    .addComponent(itemlabel2))
-                .addGap(18, 18, 18)
-                .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quentityIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quentitytext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(itemlabel2)
+                    .addComponent(itemdetailLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tablepanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(quentityIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(quentitytext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(tablepanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(iemqohlabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tablepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(discountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,7 +240,7 @@ public class OrderPanel extends javax.swing.JPanel {
                     .addComponent(totalLabel)
                     .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(placeOrdereButton))
-                .addContainerGap(374, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         searchButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -231,30 +251,30 @@ public class OrderPanel extends javax.swing.JPanel {
             }
         });
 
+        custdetails.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
         javax.swing.GroupLayout homepanelLayout = new javax.swing.GroupLayout(homepanel);
         homepanel.setLayout(homepanelLayout);
         homepanelLayout.setHorizontalGroup(
             homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homepanelLayout.createSequentialGroup()
-                .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(homepanelLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(customerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(orderIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(orderIdtext, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(customertext))
-                        .addGap(18, 18, 18)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(custdetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(homepanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tablepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(23, 23, 23)
+                .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(customerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(orderIdtext, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(customertext))
+                .addGap(18, 18, 18)
+                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(custdetails, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(homepanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tablepanel, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         homepanelLayout.setVerticalGroup(
             homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,8 +293,8 @@ public class OrderPanel extends javax.swing.JPanel {
                             .addComponent(orderIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(custdetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tablepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
+                .addComponent(tablepanel, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(457, 457, 457))
         );
 
         javax.swing.GroupLayout headerpanelLayout = new javax.swing.GroupLayout(headerpanel);
@@ -357,7 +377,7 @@ addToTable();
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void placeOrdereButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrdereButtonActionPerformed
-       
+placeOrder() ;      
     }//GEN-LAST:event_placeOrdereButtonActionPerformed
 
 
@@ -372,9 +392,11 @@ addToTable();
     private javax.swing.JLabel headerlabel;
     private javax.swing.JPanel headerpanel;
     private javax.swing.JPanel homepanel;
+    private javax.swing.JLabel iemqohlabel;
     private javax.swing.JLabel itemDetailsLabel;
     private javax.swing.JLabel itemIdLabel;
     private javax.swing.JTextField itemIdtext1;
+    private javax.swing.JLabel itemdetailLabel3;
     private javax.swing.JLabel itemdetailsLabel;
     private javax.swing.JLabel itemlabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -413,7 +435,7 @@ orderTable.setModel(dtm);
             String custId=customertext.getText();
             CustomerDto customer=customerController.getCustomer(custId);
             if(customer!=null){
-                custdetails.setText("Customer Name:"+customer.getName()+"    |      Address:"+customer.getAddress());
+                custdetails.setText("Customer Name:"+customer.getName()+"  | Address:"+customer.getAddress());
             }else{
                  JOptionPane.showMessageDialog(this,"Customer Not Found");
             }
@@ -432,7 +454,8 @@ orderTable.setModel(dtm);
             String itemId=itemIdtext1.getText();
             ItemDto item=itemController.getItem(itemId);
             if(item!=null){
-                itemlabel2.setText("Item Name:"+item.getDescription()+"|Unit Price: "+item.getUnitPrice()+"|QtyOnHand:"+item.getQoh());
+                itemdetailLabel3.setText("Item Name :"+item.getDescription()+"|Unit Price : "+item.getUnitPrice());
+                iemqohlabel.setText("QtyOnHand :"+item.getQoh());
             }else{
                  JOptionPane.showMessageDialog(this,"Item Not Found");
             }
@@ -469,7 +492,18 @@ cleanItemData();
         
         
     }
+
+    private void placeOrder() {
+        try{
+       OrderDto orderDto =new OrderDto (orderIdtext.getText(),customertext.getText(),orderDetailDto);
+   String result=orderController.placeOrder(orderDto);
+   JOptionPane.showMessageDialog(this, result);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
+   
+   
+   }
     
-    
-    
-}
+    }
