@@ -135,7 +135,6 @@
                                       <Component id="customerPostalLabel" min="-2" pref="99" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="custPostaltext" min="-2" pref="198" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="customerCityLabel" min="-2" pref="99" max="-2" attributes="0"/>
@@ -155,8 +154,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="custIdtext" min="-2" pref="147" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <Component id="custTitletext" min="-2" pref="147" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
                                               <Component id="customerNameLabel" min="-2" pref="93" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="custNametext" min="-2" pref="339" max="-2" attributes="0"/>
@@ -178,6 +176,7 @@
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="custSalarytext" min="-2" pref="188" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="comboxtitle" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -218,8 +217,8 @@
                                   <Component id="customerNameLabel" min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="customerTitleLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="custTitletext" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="custNametext" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboxtitle" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -228,8 +227,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="custSalarytext" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="customerSalaryLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="custDOBtext" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="customerDOBLabel1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="custDOBtext" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -278,17 +277,29 @@
                 <Property name="text" type="java.lang.String" value="Customer Title"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="custTitletext">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custTitletextActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="customerIdLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Customer Id"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="custIdtext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="custIdtextMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="custIdtextMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="custIdtextMouseExited"/>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="custIdtextMouseReleased"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custIdtextKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custIdtextKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="customerNameLabel">
               <Properties>
@@ -296,8 +307,20 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="custNametext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
               <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="custNametextMouseExited"/>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="custNametextMouseReleased"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custNametextActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custNametextKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="customerSalaryLabel">
@@ -306,6 +329,20 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="custSalarytext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="custSalarytextMouseExited"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custSalarytextKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custSalarytextKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="customerAddressLabel">
               <Properties>
@@ -313,8 +350,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="custAddresstext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custAddresstextActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custAddresstextKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="customerPostalLabel">
@@ -323,6 +370,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="custCitytext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custCitytextKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="customerProvinceLabel">
               <Properties>
@@ -330,8 +389,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="custProvincetext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custProvincetextActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custProvincetextKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="customerCityLabel">
@@ -340,13 +409,23 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="custPostaltext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custPostaltextKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="customerDOBLabel1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Customer DOB"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="custDOBtext">
             </Component>
             <Container class="javax.swing.JPanel" name="tablepanel">
               <Properties>
@@ -434,6 +513,37 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCustButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboxtitle">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="Mr"/>
+                    <StringItem index="1" value="Mrs"/>
+                    <StringItem index="2" value="Miss"/>
+                  </StringArray>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="custDOBtext">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="custDOBtextKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>

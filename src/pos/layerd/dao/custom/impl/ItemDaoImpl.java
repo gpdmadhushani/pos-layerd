@@ -51,7 +51,7 @@ public class ItemDaoImpl implements ItemDao {
             return itemEntity;
          
         }
-        return null; 
+        return new ItemEntity(); 
         
         
        }

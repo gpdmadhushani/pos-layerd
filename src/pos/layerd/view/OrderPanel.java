@@ -4,11 +4,16 @@
  */
 package pos.layerd.view;
 
+import java.awt.Color;
+import static java.awt.Color.green;
+import static java.awt.Color.red;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import pos.layerd.controller.CustomerController;
 import pos.layerd.controller.ItemController;
@@ -88,7 +93,21 @@ public class OrderPanel extends javax.swing.JPanel {
 
         customerLabel.setText("Customer");
 
+        customertext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        customertext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                customertextKeyReleased(evt);
+            }
+        });
+
         orderIdLabel.setText("Order Id");
+
+        orderIdtext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        orderIdtext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                orderIdtextKeyReleased(evt);
+            }
+        });
 
         tablepanel.setPreferredSize(new java.awt.Dimension(800, 750));
 
@@ -116,6 +135,8 @@ public class OrderPanel extends javax.swing.JPanel {
 
         itemIdLabel.setText("Item Id");
 
+        quentitytext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+
         searchitemButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         searchitemButton.setText("Search");
         searchitemButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +147,11 @@ public class OrderPanel extends javax.swing.JPanel {
 
         quentityIdLabel.setText("QTY");
 
+        itemIdtext1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+
         discountLabel.setText("Discount");
+
+        discounttext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
 
         addItemButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addItemButton.setText("Add Item");
@@ -380,6 +405,25 @@ addToTable();
 placeOrder() ;      
     }//GEN-LAST:event_placeOrdereButtonActionPerformed
 
+    private void orderIdtextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orderIdtextKeyReleased
+        if(((LineBorder)orderIdtext. getBorder()).getLineColor()==red &(orderIdtext.getText().equals("")==false) ){
+    orderIdtext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)orderIdtext. getBorder()).getLineColor()==green  &(orderIdtext.getText().equals("")==true)){
+  
+    orderIdtext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if((orderIdtext.getText().equals("")==false)){
+           orderIdtext.setBorder(BorderFactory. createLineBorder(Color. green));     
+                
+    } else{
+            
+        }   
+    }//GEN-LAST:event_orderIdtextKeyReleased
+
+    private void customertextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customertextKeyReleased
+       
+    }//GEN-LAST:event_customertextKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addItemButton;
@@ -429,21 +473,38 @@ orderTable.setModel(dtm);
         
     }
 
+    
+       
     private void searchCustomer() {
        
      try {
+         
             String custId=customertext.getText();
+            
+            
             CustomerDto customer=customerController.getCustomer(custId);
-            if(customer!=null){
+            
+            
+            if(customer.getName()!=null & customer.getAddress()!=null){
+                
                 custdetails.setText("Customer Name:"+customer.getName()+"  | Address:"+customer.getAddress());
-            }else{
+               
+            }else {
                  JOptionPane.showMessageDialog(this,"Customer Not Found");
+            
+                
             }
         } catch (Exception ex) {
+            
             Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
             
             JOptionPane.showMessageDialog(this,ex.getMessage());
+           
+           
         }   
+        
+       
+    
         
         
     }
@@ -453,7 +514,7 @@ orderTable.setModel(dtm);
     try {
             String itemId=itemIdtext1.getText();
             ItemDto item=itemController.getItem(itemId);
-            if(item!=null){
+            if(item.getDescription()!=null &item.getUnitPrice()!=null & item.getQoh()!=null ){
                 itemdetailLabel3.setText("Item Name :"+item.getDescription()+"|Unit Price : "+item.getUnitPrice());
                 iemqohlabel.setText("QtyOnHand :"+item.getQoh());
             }else{
@@ -476,7 +537,7 @@ Object[] rowData={od.getItemCode(),"                   "+od.getOrderQTY(),"     
 DefaultTableModel dtm=(DefaultTableModel) orderTable.getModel();
 dtm.addRow(rowData);
        try {
-            //loadtotal();
+            loadtotal();
         } catch (Exception ex) {
             Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -505,5 +566,51 @@ cleanItemData();
    
    
    }
+
+    private void loadtotal() {
+     try {
+         OrderDetailDto od1=new OrderDetailDto(itemIdtext1.getText(), Integer.parseInt(quentitytext.getText()), Double.parseDouble(discounttext.getText()));
+         
+         
+         String itemId=itemIdtext1.getText();
+         ItemDto item=itemController.getItem(itemId);
+         if(totalTextField.getText().isEmpty()){
+             
+             Double m=item.getUnitPrice();
+             int n=od1.getOrderQTY();
+             
+             
+             double dis=Double.parseDouble(discounttext.getText());
+             
+             double total=(double)((m*n)-(dis));
+             String orderTotal=String.valueOf(total);
+             totalTextField.setText(orderTotal);
+             
+         }else{
+             
+             
+             double s1=Double.parseDouble(totalTextField.getText());
+             
+             // totalTextField.setText("");
+             Double m1=item.getUnitPrice();
+             int n1=od1.getOrderQTY();
+             
+             
+             double dis1=Double.parseDouble(discounttext.getText());
+             
+             double total1=(double)((s1)+((m1*n1)-(dis1)));
+             String orderTotal1=String.valueOf(total1);
+             totalTextField.setText(orderTotal1);
+             
+             
+         }
+     } catch (Exception ex) {
+         Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    
+     
+        
+        
+    }
     
     }

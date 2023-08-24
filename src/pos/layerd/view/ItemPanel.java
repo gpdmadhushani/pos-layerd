@@ -4,11 +4,17 @@
  */
 package pos.layerd.view;
 
+import java.awt.Color;
+import static java.awt.Color.green;
+import static java.awt.Color.lightGray;
+import static java.awt.Color.red;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import pos.layerd.controller.ItemController;
@@ -73,13 +79,48 @@ public class ItemPanel extends javax.swing.JPanel {
 
         descriptionLabel.setText("Description");
 
+        descriptiontext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        descriptiontext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                descriptiontextKeyReleased(evt);
+            }
+        });
+
         itemIdLabel.setText("Item Id");
 
+        itemIdtext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        itemIdtext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                itemIdtextKeyReleased(evt);
+            }
+        });
+
         unitPriceLabel.setText("Unit Price");
+
+        unitPricetext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        unitPricetext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                unitPricetextKeyReleased(evt);
+            }
+        });
+
+        quentityonhandtext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        quentityonhandtext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                quentityonhandtextKeyReleased(evt);
+            }
+        });
 
         quentityOnHandLabel.setText("QoH");
 
         customerDOBLabel1.setText("Pack Size");
+
+        packSizetext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        packSizetext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                packSizetextKeyReleased(evt);
+            }
+        });
 
         tablepanel.setPreferredSize(new java.awt.Dimension(750, 750));
 
@@ -307,8 +348,90 @@ public class ItemPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_updateItemButtonActionPerformed
 
     private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
-        saveItem();
+         formValidate();
     }//GEN-LAST:event_addItemButtonActionPerformed
+
+    private void itemIdtextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemIdtextKeyReleased
+        if(((LineBorder)itemIdtext. getBorder()).getLineColor()==red &(itemIdtext.getText().equals("")==false) ){
+    itemIdtext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)itemIdtext. getBorder()).getLineColor()==green  &(itemIdtext.getText().equals("")==true)){
+  
+    itemIdtext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if((itemIdtext.getText().equals("")==false)){
+           itemIdtext.setBorder(BorderFactory. createLineBorder(Color. green));     
+                
+    } else{
+            
+        }   
+    }//GEN-LAST:event_itemIdtextKeyReleased
+
+    private void descriptiontextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptiontextKeyReleased
+         if(((LineBorder)descriptiontext. getBorder()).getLineColor()==red &(descriptiontext.getText().equals("")==false) ){
+    descriptiontext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)descriptiontext. getBorder()).getLineColor()==green  &(descriptiontext.getText().equals("")==true)){
+  
+    descriptiontext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if((descriptiontext.getText().equals("")==false)){
+           descriptiontext.setBorder(BorderFactory. createLineBorder(Color. green));     
+                
+    } else{
+            
+        }   
+    }//GEN-LAST:event_descriptiontextKeyReleased
+
+    private void packSizetextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_packSizetextKeyReleased
+       
+        if(((LineBorder)packSizetext. getBorder()).getLineColor()==red &(packSizetext.getText().equals("")==false) ){
+    packSizetext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)packSizetext. getBorder()).getLineColor()==green  &(packSizetext.getText().equals("")==true)){
+  
+    packSizetext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if((packSizetext.getText().equals("")==false)){
+           packSizetext.setBorder(BorderFactory. createLineBorder(Color. green));     
+                
+    } else{
+            
+        }   
+    }//GEN-LAST:event_packSizetextKeyReleased
+
+    private void unitPricetextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unitPricetextKeyReleased
+       if(((LineBorder)unitPricetext. getBorder()).getLineColor()==red &(isDouble(unitPricetext.getText())==true) ){
+    unitPricetext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)unitPricetext. getBorder()).getLineColor()==green  &(isDouble(unitPricetext.getText())==false)){
+  
+  unitPricetext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(isDouble(unitPricetext.getText())==true){
+         unitPricetext.setBorder(BorderFactory. createLineBorder(Color. green));       
+                
+    } else if(((LineBorder)unitPricetext. getBorder()).getLineColor()==red &(isDouble(unitPricetext.getText())==false)){
+        unitPricetext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+    } else{
+        
+    }   
+        
+    }//GEN-LAST:event_unitPricetextKeyReleased
+
+    private void quentityonhandtextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quentityonhandtextKeyReleased
+        if(((LineBorder)quentityonhandtext. getBorder()).getLineColor()==red &(isInteger(quentityonhandtext.getText())==true) ){
+    quentityonhandtext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)quentityonhandtext. getBorder()).getLineColor()==green  &(isInteger(quentityonhandtext.getText())==false)){
+  
+  quentityonhandtext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(isInteger(quentityonhandtext.getText())==true){
+         quentityonhandtext.setBorder(BorderFactory. createLineBorder(Color. green));       
+                
+    } else if(((LineBorder)quentityonhandtext. getBorder()).getLineColor()==red &(isInteger(quentityonhandtext.getText())==false)){
+        quentityonhandtext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+    } else{
+        
+    }   
+        
+    }//GEN-LAST:event_quentityonhandtextKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -471,6 +594,114 @@ public class ItemPanel extends javax.swing.JPanel {
     packSizetext.setText("");
     unitPricetext.setText("");
     quentityonhandtext.setText("");
+    
+    itemIdtext.setBorder(BorderFactory.createLineBorder(lightGray));
+    
+    descriptiontext.setBorder(BorderFactory.createLineBorder(lightGray));
+     packSizetext.setBorder(BorderFactory.createLineBorder(lightGray));
+    unitPricetext.setBorder(BorderFactory.createLineBorder(lightGray));
+      quentityonhandtext.setBorder(BorderFactory.createLineBorder(lightGray));       
+      
+    
+    
+    
         
     }
+
+    private boolean isDouble(String input) {
+     
+        try {
+            Double.parseDouble(input);
+            
+            return true;
+        } catch (NumberFormatException e) {
+            
+            return false;
+        }
+    
+    
+   }
+    
+    private boolean isInteger(String input){
+      try {
+            Integer.parseInt(input);
+            
+            return true;
+        } catch (NumberFormatException e) {
+            
+            return false;
+        }  
+        
+        
+        
+        
+    }
+    
+  private void formValidate() {
+       
+        String id=itemIdtext.getText();
+        
+          String name=descriptiontext.getText();
+          String pack=packSizetext.getText();
+          String unitprice=unitPricetext.getText();
+             String qoh=quentityonhandtext.getText();
+              
+                
+                if(id.equals("")){
+                   JOptionPane.showMessageDialog(this, "Please enter Item Id");
+                  itemIdtext.setBorder(BorderFactory. createLineBorder(Color. red));
+                   
+                  
+                                      
+                }else if(name.equals("")){
+                   
+                   JOptionPane.showMessageDialog(this, "Please enter Item Description");
+                   
+                   
+                }else if(pack.equals("")){
+                    
+                     
+                   JOptionPane.showMessageDialog(this, "Please enter Pack Size");
+                   packSizetext.setBorder(BorderFactory. createLineBorder(Color. red));
+                }
+      
+                else if(unitprice.equals("")){
+                    
+                  JOptionPane.showMessageDialog(this, "Please enter Unit Price");
+                unitPricetext .setBorder(BorderFactory. createLineBorder(Color. red));   
+               
+               
+               }else if(qoh.equals("")){
+                    
+                   JOptionPane.showMessageDialog(this, "Please enter qoh");
+                   quentityonhandtext.setBorder(BorderFactory. createLineBorder(Color. red));
+                   
+               }else if((isDouble(unitprice))==false){
+                  
+                    JOptionPane.showMessageDialog(this, "Please enter Valid Unit Price");  
+                   unitPricetext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+                 
+                  }else if((isInteger(qoh))==false){
+                  
+                    JOptionPane.showMessageDialog(this, "Please enter Valid qoh");  
+                   unitPricetext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+                   
+                    
+                }else{
+                   
+                    saveItem();
+                }
+        
+        
+        
+        
+        
+        
+        
+        
+    }  
+    
+    
+    
+    
 }

@@ -4,14 +4,26 @@
  */
 package pos.layerd.view;
 
+import java.awt.Color;
+import static java.awt.Color.black;
+import static java.awt.Color.green;
+import static java.awt.Color.lightGray;
+import static java.awt.Color.red;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import pos.layerd.controller.CustomerController;
 import pos.layerd.dto.CustomerDto;
+
+
 
 /**
  *
@@ -21,7 +33,8 @@ public class CustomerPanel extends javax.swing.JPanel {
     
 
    private CustomerController customerController;
-    public CustomerPanel() {
+   
+   public CustomerPanel() {
         customerController =new CustomerController ();
         
         initComponents();
@@ -43,7 +56,6 @@ public class CustomerPanel extends javax.swing.JPanel {
         headerlabel = new javax.swing.JLabel();
         homepanel = new javax.swing.JPanel();
         customerTitleLabel = new javax.swing.JLabel();
-        custTitletext = new javax.swing.JTextField();
         customerIdLabel = new javax.swing.JLabel();
         custIdtext = new javax.swing.JTextField();
         customerNameLabel = new javax.swing.JLabel();
@@ -59,13 +71,14 @@ public class CustomerPanel extends javax.swing.JPanel {
         customerCityLabel = new javax.swing.JLabel();
         custPostaltext = new javax.swing.JTextField();
         customerDOBLabel1 = new javax.swing.JLabel();
-        custDOBtext = new javax.swing.JTextField();
         tablepanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
         deleteCustButton = new javax.swing.JButton();
         updateCustButton = new javax.swing.JButton();
         addCustButton = new javax.swing.JButton();
+        comboxtitle = new javax.swing.JComboBox<>();
+        custDOBtext = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(765, 579));
 
@@ -93,43 +106,116 @@ public class CustomerPanel extends javax.swing.JPanel {
 
         customerTitleLabel.setText("Customer Title");
 
-        custTitletext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custTitletextActionPerformed(evt);
+        customerIdLabel.setText("Customer Id");
+
+        custIdtext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        custIdtext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                custIdtextMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                custIdtextMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                custIdtextMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                custIdtextMouseReleased(evt);
+            }
+        });
+        custIdtext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                custIdtextKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custIdtextKeyReleased(evt);
             }
         });
 
-        customerIdLabel.setText("Customer Id");
-
         customerNameLabel.setText("Customer Name");
 
+        custNametext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        custNametext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                custNametextMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                custNametextMouseReleased(evt);
+            }
+        });
         custNametext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 custNametextActionPerformed(evt);
             }
         });
+        custNametext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custNametextKeyReleased(evt);
+            }
+        });
 
         customerSalaryLabel.setText("Salary");
 
+        custSalarytext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        custSalarytext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                custSalarytextMouseExited(evt);
+            }
+        });
+        custSalarytext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                custSalarytextKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custSalarytextKeyReleased(evt);
+            }
+        });
+
         customerAddressLabel.setText("Address");
 
+        custAddresstext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
         custAddresstext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 custAddresstextActionPerformed(evt);
             }
         });
+        custAddresstext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custAddresstextKeyReleased(evt);
+            }
+        });
 
         customerPostalLabel.setText("Postal Code");
 
+        custCitytext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        custCitytext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custCitytextKeyReleased(evt);
+            }
+        });
+
         customerProvinceLabel.setText("Province");
 
+        custProvincetext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
         custProvincetext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 custProvincetextActionPerformed(evt);
             }
         });
+        custProvincetext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custProvincetextKeyReleased(evt);
+            }
+        });
 
         customerCityLabel.setText("City");
+
+        custPostaltext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        custPostaltext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custPostaltextKeyReleased(evt);
+            }
+        });
 
         customerDOBLabel1.setText("Customer DOB");
 
@@ -196,6 +282,16 @@ public class CustomerPanel extends javax.swing.JPanel {
             }
         });
 
+        comboxtitle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mr", "Mrs", "Miss" }));
+        comboxtitle.setBorder(null);
+
+        custDOBtext.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.lightGray));
+        custDOBtext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                custDOBtextKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout homepanelLayout = new javax.swing.GroupLayout(homepanel);
         homepanel.setLayout(homepanelLayout);
         homepanelLayout.setHorizontalGroup(
@@ -208,8 +304,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                             .addGroup(homepanelLayout.createSequentialGroup()
                                 .addComponent(customerPostalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(custPostaltext, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(271, 271, 271))
+                                .addComponent(custPostaltext, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(homepanelLayout.createSequentialGroup()
                                 .addComponent(customerCityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -226,8 +321,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                                 .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(custIdtext, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(homepanelLayout.createSequentialGroup()
-                                        .addComponent(custTitletext, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(5, 5, 5)
+                                        .addGap(152, 152, 152)
                                         .addComponent(customerNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(custNametext, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -243,7 +337,8 @@ public class CustomerPanel extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(customerSalaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(custSalarytext, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(custSalarytext, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(comboxtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(homepanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -273,14 +368,14 @@ public class CustomerPanel extends javax.swing.JPanel {
                             .addComponent(customerNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(customerTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(custTitletext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(custNametext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(custNametext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboxtitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(9, 9, 9)
                 .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(custSalarytext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customerSalaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(custDOBtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customerDOBLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerDOBLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custDOBtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(homepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(custAddresstext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,12 +466,11 @@ public class CustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_updateCustButtonActionPerformed
 
     private void addCustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustButtonActionPerformed
-        addCustomer();
+       
+        formValidate();
+      
+      
     }//GEN-LAST:event_addCustButtonActionPerformed
-
-    private void custTitletextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custTitletextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_custTitletextActionPerformed
 
     private void custNametextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custNametextActionPerformed
         // TODO add your handling code here:
@@ -390,10 +484,186 @@ public class CustomerPanel extends javax.swing.JPanel {
 searchCustomer();
     }//GEN-LAST:event_customerTableMouseClicked
 
+    private void custSalarytextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custSalarytextKeyPressed
+        
+    }//GEN-LAST:event_custSalarytextKeyPressed
+
+    private void custNametextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custNametextMouseExited
+    
+    }//GEN-LAST:event_custNametextMouseExited
+    
+    
+    
+    private void custIdtextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custIdtextMouseExited
+
+      
+   
+    }//GEN-LAST:event_custIdtextMouseExited
+
+    private void custSalarytextMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custSalarytextMouseExited
+        
+     
+    }//GEN-LAST:event_custSalarytextMouseExited
+
+    private void custIdtextMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custIdtextMouseEntered
+        
+    }//GEN-LAST:event_custIdtextMouseEntered
+
+    private void custIdtextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custIdtextMouseClicked
+       
+    }//GEN-LAST:event_custIdtextMouseClicked
+
+    private void custIdtextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custIdtextMouseReleased
+    
+    }//GEN-LAST:event_custIdtextMouseReleased
+
+    private void custNametextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custNametextMouseReleased
+      
+    }//GEN-LAST:event_custNametextMouseReleased
+
+    private void custIdtextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custIdtextKeyPressed
+         
+                
+    }//GEN-LAST:event_custIdtextKeyPressed
+    
+    
+    private void custIdtextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custIdtextKeyReleased
+     if(((LineBorder)custIdtext. getBorder()).getLineColor()==red &(custIdtext.getText().equals("")==false) ){
+    custIdtext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custIdtext. getBorder()).getLineColor()==green  &(custIdtext.getText().equals("")==true)){
+  
+    custIdtext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if((custIdtext.getText().equals("")==false)){
+           custIdtext.setBorder(BorderFactory. createLineBorder(Color. green));     
+                
+    } else{
+            
+        }            
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_custIdtextKeyReleased
+
+    private void custNametextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custNametextKeyReleased
+        if(((LineBorder)custNametext. getBorder()).getLineColor()==red &(custNametext.getText().equals("")==false) ){
+    custNametext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custNametext. getBorder()).getLineColor()==green  &(custNametext.getText().equals("")==true)){
+  
+   custNametext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(custNametext.getText().equals("")==false){
+                
+        custNametext.setBorder(BorderFactory. createLineBorder(Color. green));        
+    }  else{
+            
+        }    
+    }//GEN-LAST:event_custNametextKeyReleased
+
+    private void custSalarytextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custSalarytextKeyReleased
+       if(((LineBorder)custSalarytext. getBorder()).getLineColor()==red &(isDouble(custSalarytext.getText())==true) ){
+    custSalarytext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custSalarytext. getBorder()).getLineColor()==green  &(isDouble(custSalarytext.getText())==false)){
+  
+  custSalarytext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(isDouble(custSalarytext.getText())==true){
+         custSalarytext.setBorder(BorderFactory. createLineBorder(Color. green));       
+                
+    } else if(((LineBorder)custSalarytext. getBorder()).getLineColor()==red &(isDouble(custSalarytext.getText())==false)){
+        custSalarytext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+    } else{
+        
+    }   
+    }//GEN-LAST:event_custSalarytextKeyReleased
+
+    private void custAddresstextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custAddresstextKeyReleased
+        if(((LineBorder)custAddresstext. getBorder()).getLineColor()==red &(custAddresstext.getText().equals("")==false) ){
+    custAddresstext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custAddresstext. getBorder()).getLineColor()==green  &(custAddresstext.getText().equals("")==true)){
+  
+  custAddresstext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(custAddresstext.getText().equals("")==false){
+                
+         custAddresstext.setBorder(BorderFactory. createLineBorder(Color. green));       
+    } else{
+            
+        }     
+    }//GEN-LAST:event_custAddresstextKeyReleased
+
+    private void custCitytextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custCitytextKeyReleased
+       
+        if(((LineBorder)custCitytext. getBorder()).getLineColor()==red &(custCitytext.getText().equals("")==false) ){
+    custCitytext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custCitytext. getBorder()).getLineColor()==green  &(custCitytext.getText().equals("")==true)){
+  
+  custCitytext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(custCitytext.getText().equals("")==false){
+         custCitytext.setBorder(BorderFactory. createLineBorder(Color. green));       
+                
+    } else{
+        
+        }     
+    }//GEN-LAST:event_custCitytextKeyReleased
+
+    private void custProvincetextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custProvincetextKeyReleased
+      
+        if(((LineBorder)custProvincetext. getBorder()).getLineColor()==red &(custProvincetext.getText().equals("")==false) ){
+    custProvincetext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custProvincetext. getBorder()).getLineColor()==green  &(custProvincetext.getText().equals("")==true)){
+  
+  custProvincetext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(custProvincetext.getText().equals("")==false){
+       custProvincetext.setBorder(BorderFactory. createLineBorder(Color. green));           
+                
+    }else{
+            
+        }        
+        
+        
+    }//GEN-LAST:event_custProvincetextKeyReleased
+
+    private void custPostaltextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custPostaltextKeyReleased
+          if(((LineBorder)custPostaltext. getBorder()).getLineColor()==red &(custPostaltext.getText().equals("")==false) ){
+    custPostaltext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custPostaltext. getBorder()).getLineColor()==green  &(custPostaltext.getText().equals("")==true)){
+  
+  custPostaltext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(custPostaltext.getText().equals("")==false){
+         custPostaltext.setBorder(BorderFactory. createLineBorder(Color. green));        
+                
+    } else{
+            
+        }      
+    }//GEN-LAST:event_custPostaltextKeyReleased
+
+    private void custDOBtextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_custDOBtextKeyReleased
+        if(((LineBorder)custDOBtext. getBorder()).getLineColor()==red &(custDOBtext.getText().equals("")==false) ){
+    custDOBtext.setBorder(BorderFactory. createLineBorder(Color. green)); 
+    
+}else if(((LineBorder)custDOBtext. getBorder()).getLineColor()==green  &(custDOBtext.getText().equals("")==true)){
+  
+   custDOBtext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+        }else if(custDOBtext.getText().equals("")==false){
+                
+        custDOBtext.setBorder(BorderFactory. createLineBorder(Color. green));        
+    }  else{
+            
+        }    
+    }//GEN-LAST:event_custDOBtextKeyReleased
+        
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCustButton;
     private javax.swing.JPanel basepanel;
+    private javax.swing.JComboBox<String> comboxtitle;
     private javax.swing.JTextField custAddresstext;
     private javax.swing.JTextField custCitytext;
     private javax.swing.JTextField custDOBtext;
@@ -402,7 +672,6 @@ searchCustomer();
     private javax.swing.JTextField custPostaltext;
     private javax.swing.JTextField custProvincetext;
     private javax.swing.JTextField custSalarytext;
-    private javax.swing.JTextField custTitletext;
     private javax.swing.JLabel customerAddressLabel;
     private javax.swing.JLabel customerCityLabel;
     private javax.swing.JLabel customerDOBLabel1;
@@ -425,7 +694,7 @@ searchCustomer();
     private void addCustomer()  {
 
        try {
-           CustomerDto customerDto = new CustomerDto(custIdtext.getText(), custTitletext.getText(), custNametext.getText(), custDOBtext.getText(), Double.parseDouble(custSalarytext.getText()), custAddresstext.getText(), custCitytext.getText(), custProvincetext.getText(), custPostaltext.getText());
+           CustomerDto customerDto = new CustomerDto(custIdtext.getText(),comboxtitle.getSelectedItem().toString(), custNametext.getText(), custDOBtext.getText(), Double.parseDouble(custSalarytext.getText()), custAddresstext.getText(), custCitytext.getText(), custProvincetext.getText(), custPostaltext.getText());
            
            String result=customerController.addCustomer(customerDto);
            JOptionPane.showMessageDialog(this, result);
@@ -442,7 +711,7 @@ searchCustomer();
 
 private void clear(){
     custIdtext.setText("");
-    custTitletext.setText("");
+    comboxtitle.setSelectedIndex(0);
     custNametext.setText("");
     custDOBtext.setText("");
     custSalarytext.setText("");
@@ -450,6 +719,21 @@ private void clear(){
     custCitytext.setText("");
     custProvincetext.setText("");
     custPostaltext.setText("");
+    
+    
+    custIdtext.setBorder(BorderFactory.createLineBorder(lightGray));
+    
+    custNametext.setBorder(BorderFactory.createLineBorder(lightGray));
+     custDOBtext.setBorder(BorderFactory.createLineBorder(lightGray));
+    custSalarytext.setBorder(BorderFactory.createLineBorder(lightGray));
+      custAddresstext.setBorder(BorderFactory.createLineBorder(lightGray));       
+      custCitytext.setBorder(BorderFactory.createLineBorder(lightGray));       
+      custProvincetext.setBorder(BorderFactory.createLineBorder(lightGray));      
+       custPostaltext.setBorder(BorderFactory.createLineBorder(lightGray));     
+            
+    
+    
+    
     
     
 }
@@ -487,7 +771,7 @@ private void clear(){
             if(customerDto!=null){
                 
                custIdtext.setText(customerDto.getId());
-    custTitletext.setText(customerDto.getTitle());
+    comboxtitle.setSelectedItem(customerDto.getTitle());
     custNametext.setText(customerDto.getName());
     custDOBtext.setText(customerDto.getDob());
     custSalarytext.setText(Double.toString(customerDto.getSalary()));
@@ -514,7 +798,7 @@ private void clear(){
        
         try {
             CustomerDto customer=new CustomerDto(custIdtext.getText(),
-                    custTitletext.getText(),
+                    comboxtitle.getSelectedItem().toString(),
                     custNametext.getText(),
                     custDOBtext.getText(),
                     Double.parseDouble(custSalarytext.getText()),
@@ -554,7 +838,106 @@ private void clear(){
 }   
         
     
+
+
+
+    private void formValidate() {
+       
+        String id=custIdtext.getText();
+        // String title=custTitletext.getText();
+        String title= comboxtitle.getSelectedItem().toString();
+          String name=custNametext.getText();
+          String dob=custDOBtext.getText();
+          String salary=custSalarytext.getText();
+             String address=custAddresstext.getText();
+              String city= custCitytext.getText();
+                  String province= custProvincetext.getText();
+                String zip=custPostaltext.getText();  
+                
+                if(id.equals("")){
+                   JOptionPane.showMessageDialog(this, "Please enter Customer Id");
+                  custIdtext.setBorder(BorderFactory. createLineBorder(Color. red));
+                   
+                  
+                                      
+                }else if(title.equals("")){
+                   
+                   JOptionPane.showMessageDialog(this, "Please enter Customer Title");
+                   
+                   
+                }else if(name.equals("")){
+                    
+                     
+                   JOptionPane.showMessageDialog(this, "Please enter Customer Name");
+                   custNametext.setBorder(BorderFactory. createLineBorder(Color. red));
+                }
+        else if(dob.equals("")){
+                   
+            JOptionPane.showMessageDialog(this, "Please enter Customer's Date Of Birth");
+             custDOBtext.setBorder(BorderFactory. createLineBorder(Color. red));      
+               }
+                else if(salary.equals("")){
+                    
+                  JOptionPane.showMessageDialog(this, "Please enter Customer Salary");
+                custSalarytext .setBorder(BorderFactory. createLineBorder(Color. red));   
+               
+               
+               }else if(address.equals("")){
+                    
+                   JOptionPane.showMessageDialog(this, "Please enter Customer Address");
+                   custAddresstext.setBorder(BorderFactory. createLineBorder(Color. red));
+                   
+                }else if(city.equals("")){
+                   
+                    JOptionPane.showMessageDialog(this, "Please enter Customer City");
+                  custCitytext.setBorder(BorderFactory. createLineBorder(Color. red));
+                    
+                }else if(province.equals("")){
+                 
+                    JOptionPane.showMessageDialog(this, "Please enter Customer Province");
+                  custProvincetext.setBorder(BorderFactory. createLineBorder(Color. red));
+                     
+                }else if(zip.equals("")){
+                   
+                    JOptionPane.showMessageDialog(this, "Please enter Customer Postal Code");
+                    custPostaltext.setBorder(BorderFactory. createLineBorder(Color. red));
+                   
+                   
+                }else if((isDouble(salary))==false){
+                  
+                    JOptionPane.showMessageDialog(this, "Please enter Valid Customer Salary");  
+                   custSalarytext.setBorder(BorderFactory. createLineBorder(Color. red)); 
+                
+                }else{
+                   
+                    addCustomer();
+                }
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+     
+    
+    boolean isDouble(String input) {
+        try {
+            Double.parseDouble(input);
+            
+            return true;
+        } catch (NumberFormatException e) {
+            
+            return false;
+        }
+    
+    
+    
+    }
 }
+
 
 
 
